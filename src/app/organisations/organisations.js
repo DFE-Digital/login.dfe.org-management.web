@@ -1,5 +1,5 @@
 'use strict';
-const { getPageOfOrganisations, searchOrganisations } = require('./../../infrastructure/org-management');
+const { searchOrganisations } = require('./../../infrastructure/org-management');
 
 
 const getPage = async (req) => {

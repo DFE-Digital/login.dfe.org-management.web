@@ -16,5 +16,8 @@
   },
   "loggerSettings": {
     "applicationName": "Organisation Management"
+  },
+  "orgManagement": {
+    "type": "static"
   }
 }
