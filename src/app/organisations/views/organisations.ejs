@@ -17,18 +17,19 @@ const paginationModel = {
 
 <div class="row">
     <div class="col-8">
-        <h1 class="heading-xlarge"><%= locals.app.title ? locals.app.title : 'Manage Organisations'%></h1>
+        <h1 class="heading-xlarge"><%= locals.app.title ? locals.app.title : 'Manage Organisation'%>s</h1>
     </div>
 </div>
 
 <div class="row row-spacer">
     <div class="col-6">
         <form method="post">
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>"/>
             <div class="search-field">
                 <fieldset class="search-input">
-                    <label for="criteria" class="vh">Search by organisation name</label>
-                    <input type="text" id="criteria" name="criteria" value="" class="form-control"
-                           placeholder="Search by organisation name">
+                    <label for="criteria" class="vh">Search by organisation name or unique identifier</label>
+                    <input type="text" id="criteria" name="criteria" value="<%=criteria%>" class="form-control"
+                           placeholder="Search by organisation name or unique identifier">
                 </fieldset>
                 <fieldset class="search-submit">
                     <button type="submit" class="button">Search</button>
@@ -39,7 +40,7 @@ const paginationModel = {
 
     <div class="col-6">
         <div class="buttons pull-right">
-            <a href="" class="button button-secondary">Add organisation </a>
+            <a href="/organisations/new-organisation" class="button button-secondary">Add organisation</a>
         </div>
     </div>
 </div>

@@ -43,7 +43,12 @@ const getPageOfOrganisations = async (pageNumber, correlationId) => {
   return await callApi(`organisations?page=${pageNumber}`, 'GET', undefined, correlationId);
 };
 
+const searchOrganisations = async (criteria, pageNumber, correlationId) => {
+  return await callApi(`organisations?search=${criteria}&page=${pageNumber}`, 'GET', undefined, correlationId);
+};
+
 
 module.exports = {
   getPageOfOrganisations,
+  searchOrganisations,
 };
