@@ -15,6 +15,17 @@ const paginationModel = {
 }
 %>
 
+<% if (locals.flash.info) { %>
+<div class="row">
+    <div class="col-12">
+        <div class="notification notification-success">
+            <%=locals.flash.info%>
+        </div>
+    </div>
+</div>
+<% } %>
+
+
 <div class="row">
     <div class="col-8">
         <h1 class="heading-xlarge"><%= locals.app.title ? locals.app.title : 'Manage Organisation'%>s</h1>
@@ -53,7 +64,7 @@ const paginationModel = {
             <tr class="sortable">
                 <th scope="col" class="cwp-35">Name</th>
                 <th scope="col" class="cwp-15">URN</th>
-                <th scope="col" class="cwp-15">UKPRN</th>
+                <th scope="col" class="cwp-15">Category</th>
             </tr>
             </thead>
             <tbody>
@@ -65,9 +76,9 @@ const paginationModel = {
             <% for (let i=0; i < locals.organisations.length; i++) {
             const organisation = locals.organisations[i] %>
             <tr>
-                <td><a href=""><%=organisation.name%></a></td>
+                <td><a href="/organisations/<%=organisation.id%>"><%=organisation.name%></a></td>
                 <td><%=organisation.urn%></td>
-                <td><%=organisation.ukprn%></td>
+                <td><%= organisation.category ? organisation.category.name : ''%></td>
             </tr>
             <% } %>
             </tbody>
