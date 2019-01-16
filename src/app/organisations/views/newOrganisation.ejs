@@ -1,0 +1,48 @@
+
+
+<div class="row">
+    <div class="col-8">
+        <h1 class="heading-xlarge"> <%=locals.organisationId ? 'Edit ' : 'Add '%><%= locals.app.title ? locals.app.title : 'Manage Organisations'%></h1>
+
+        <form method="post" id="form-new-organisation">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+            <fieldset>
+                <legend class="vh">Organisation details</legend>
+                <div class="form-group <%= (locals.validationMessages.name !== undefined) ? 'form-group-error' : '' %>">
+                    <label class="form-label" for="name">Name</label>
+                    <% if (locals.validationMessages.name !== undefined) { %>
+                        <p class="error-message" id="validation-name"><%= locals.validationMessages.name %></p>
+                    <% } %>
+                    <input class="form-control" style="width:75%" id="name" name="name" type="text"
+                    <% if (locals.validationMessages.name !== undefined) { %>
+                           aria-invalid="true" aria-describedby="validation-name"
+                            <% } %>
+                           value="<%=locals.name%>">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="urn">URN </label>
+                    <input class="form-control" style="width:75%" id="urn" name="urn" type="text" value="<%=locals.urn%>">
+                </div>
+            </fieldset>
+
+            <div class="form-submit submit-buttons">
+                <button type="submit" class="button">Continue</button>
+                <a href="/organisations" class="button button-secondary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+    <% if (locals.organisationId) { %>
+    <div class="col-4">
+        <aside>
+            <h2 class="heading-medium">Actions</h2>
+            <ul class="list">
+                <li>
+                    <a href="/organisations/<%=locals.organisationId%>/remove-organisation">Remove organisation</a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <% } %>
+</div>

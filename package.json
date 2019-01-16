@@ -1,10 +1,10 @@
 {
-  "name": "login.dfe.migration.admin",
+  "name": "login.dfe.org-management.web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "settings='./config/PROJECT-NAME.dev.json' node src/index.js",
+    "dev": "settings='./config/login.dfe.org-management.dev.json' node src/index.js",
     "test": "./node_modules/.bin/jest"
   },
   "engines": {
@@ -12,24 +12,32 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DFE-Digital/login.dfe.node-boilerplate.git"
+    "url": "git+https://github.com/DFE-Digital/login.dfe.org-management.web.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DFE-Digital/login.dfe.node-boilerplate/issues"
+    "url": "https://github.com/DFE-Digital/login.dfe.org-management.web/issues"
   },
-  "homepage": "https://github.com/DFE-Digital/login.dfe.node-boilerplate#readme",
+  "homepage": "https://github.com/DFE-Digital/login.dfe.org-management.web#readme",
   "dependencies": {
+    "agentkeepalive": "^3.4.1",
     "body-parser": "^1.18.1",
+    "csurf": "^1.9.0",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-ejs-layouts": "^2.3.1",
+    "express-flash-2": "^1.0.1",
     "helmet": "^3.9.0",
     "lodash": "^4.17.10",
+    "login.dfe.async-retry": "git+https://github.com/DFE-Digital/login.dfe.async-retry.git#v1.0",
     "login.dfe.audit.winston-sequelize-transport": "git+https://github.com/DFE-Digital/login.dfe.audit.winston-sequelize-transport.git#v1.0",
     "login.dfe.express-error-handling": "git+https://github.com/DFE-Digital/login.dfe.express-error-handling.git#v1.2",
     "login.dfe.healthcheck": "git+https://github.com/DFE-Digital/login.dfe.healthcheck.git#v1.4.3",
+    "login.dfe.jwt-strategies": "git+https://github.com/DFE-Digital/login.dfe.jwt-strategies.git#v2.0.1",
+    "login.dfe.request-promise-retry": "git+https://github.com/DFE-Digital/login.dfe.request-promise-retry.git#v1.0",
     "login.dfe.sanitization": "git+https://github.com/DFE-Digital/login.dfe.sanitization.git#v1.0",
     "winston": "^2.4.0"
   },

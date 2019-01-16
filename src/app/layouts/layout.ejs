@@ -22,7 +22,7 @@
     <meta property="og:image" content="https://rawgit.com/DFE-Digital/dfe.ui.toolkit/master/dist/images/opengraph-image.png">
 
 </head>
-<body>
+<body class="manage-organisations">
 
 <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
@@ -51,32 +51,25 @@
         </div>
     </header>
 
-    <div class="header-user">
-        <div class="header-inner">
-            <div class="service-info">
-                <div class="phase-banner-beta">
-                    <p>
-                        <strong class="phase-tag">BETA</strong>
-                        <span>This is a new service – your <a href="#" target="_blank">feedback</a> will help us to improve it. </span>
-                    </p>
-                </div>
-            </div>
-            <% if (locals.user !== undefined) { %>
-            <div class="account-information" role="navigation">
-                <p class="signed-in-as"><span class="vh">You are signed in as</span> <%= locals.displayName %></p>
-                <nav id="user-nav">
-                    <ul role="menubar">
-                        <li><a href="/profile" role="menuitem">Profile</a></li>
-                        <li><a href="/signout" role="menuitem">Sign out</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <% } %>
-        </div>
+    <div class="main-nav">
+        <nav>
+            <ul>
+                <li class="pull-right"><a href="/signout">Sign out</a></li>
+            </ul>
+        </nav>
     </div>
 
 
+
     <main id="content" tabindex="-1">
+        <% if (locals.backLink !== undefined) { %>
+            <% if (locals.backLink === true) { %>
+                <div class="js-back-link"></div>
+            <% } else { %>
+            <a href="<%-locals.backLink%>" class="link-back">Back</a>
+            <% } %>
+        <% } %>
+
         <%- body %>
     </main>
 
