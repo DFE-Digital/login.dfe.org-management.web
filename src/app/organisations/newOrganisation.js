@@ -26,7 +26,7 @@ const validate = async (req) => {
     category: {
       id: '004'
     },
-    backLink: './',
+    backLink: true,
     validationMessages: {},
   };
 
