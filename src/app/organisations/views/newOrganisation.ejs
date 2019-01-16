@@ -39,10 +39,7 @@
             <h2 class="heading-medium">Actions</h2>
             <ul class="list">
                 <li>
-                    <form method="post" action="/organisations/<%=locals.organisationId%>/remove-organisation" class="delete-org">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
-                        <button class="button-text">Remove organisation</button>
-                    </form>
+                    <a href="/organisations/<%=locals.organisationId%>/remove-organisation">Remove organisation</a>
                 </li>
             </ul>
         </aside>

@@ -1,5 +1,15 @@
 'use strict';
-const { deleteOrganisation } = require('./../../infrastructure/org-management');
+const { deleteOrganisation, getOrganisationById } = require('./../../infrastructure/org-management');
+
+const getDeleteOrganisation = async (req, res) => {
+  const organisation = await getOrganisationById(req.params.orgId, req.id);
+
+  res.render('organisations/views/removeOrganisation', {
+    organisation,
+    csrfToken: req.csrfToken(),
+    backLink: true,
+  });
+};
 
 const postDeleteOrganisation = async (req, res) => {
   const organisationId = req.params.orgId;
@@ -10,5 +20,6 @@ const postDeleteOrganisation = async (req, res) => {
 };
 
 module.exports = {
+  getDeleteOrganisation,
   postDeleteOrganisation
 };
