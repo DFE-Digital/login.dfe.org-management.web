@@ -18,10 +18,15 @@ const updateOrganisation = async (orgId, organisation, correlationId) => {
   return Promise.resolve([]);
 };
 
+const deleteOrganisation = async (orgId, correlationId) => {
+  return Promise.resolve([]);
+};
+
 module.exports = {
   getPageOfOrganisations,
   searchOrganisations,
   createOrganisation,
   getOrganisationById,
   updateOrganisation,
+  deleteOrganisation,
 };

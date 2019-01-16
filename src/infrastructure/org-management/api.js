@@ -59,6 +59,10 @@ const updateOrganisation = async (orgId, organisation, correlationId) => {
   return await callApi(`organisations/${orgId}`, 'PUT', organisation, correlationId);
 };
 
+const deleteOrganisation = async (orgId, correlationId) => {
+  return await callApi(`organisations/${orgId}`, 'DELETE', correlationId);
+};
+
 
 module.exports = {
   getPageOfOrganisations,
@@ -66,4 +70,5 @@ module.exports = {
   createOrganisation,
   getOrganisationById,
   updateOrganisation,
+  deleteOrganisation,
 };

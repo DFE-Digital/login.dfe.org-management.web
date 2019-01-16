@@ -1,12 +1,9 @@
+
+
 <div class="row">
     <div class="col-8">
         <h1 class="heading-xlarge"> <%=locals.organisationId ? 'Edit ' : 'Add '%><%= locals.app.title ? locals.app.title : 'Manage Organisations'%></h1>
-    </div>
-</div>
 
-
-<div class="row">
-    <div class="col-12">
         <form method="post" id="form-new-organisation">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
             <fieldset>
@@ -16,7 +13,7 @@
                     <% if (locals.validationMessages.name !== undefined) { %>
                         <p class="error-message" id="validation-name"><%= locals.validationMessages.name %></p>
                     <% } %>
-                    <input class="form-control" id="name" name="name" type="text"
+                    <input class="form-control" style="width:75%" id="name" name="name" type="text"
                     <% if (locals.validationMessages.name !== undefined) { %>
                            aria-invalid="true" aria-describedby="validation-name"
                             <% } %>
@@ -25,7 +22,7 @@
 
                 <div class="form-group">
                     <label class="form-label" for="urn">URN </label>
-                    <input class="form-control" id="urn" name="urn" type="text" value="<%=locals.urn%>">
+                    <input class="form-control" style="width:75%" id="urn" name="urn" type="text" value="<%=locals.urn%>">
                 </div>
             </fieldset>
 
@@ -36,4 +33,19 @@
 
         </form>
     </div>
+    <% if (locals.organisationId) { %>
+    <div class="col-4">
+        <aside>
+            <h2 class="heading-medium">Actions</h2>
+            <ul class="list">
+                <li>
+                    <form method="post" action="/organisations/<%=locals.organisationId%>/remove-organisation" class="delete-org">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+                        <button class="button-text">Remove organisation</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <% } %>
 </div>
