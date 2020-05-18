@@ -1,10 +1,7 @@
 jest.mock('login.dfe.request-promise-retry');
-jest.mock('agentkeepalive', () => {
-  return {
-    HttpsAgent : jest.fn()
-  }
-});
 jest.mock('login.dfe.jwt-strategies');
+const rp = require('login.dfe.request-promise-retry');
+const jwtStrategy = require('login.dfe.jwt-strategies');
 
 jest.mock('./../../../src/infrastructure/config', () => require('./../../utils').configMockFactory({
   orgManagement: {
@@ -15,11 +12,8 @@ jest.mock('./../../../src/infrastructure/config', () => require('./../../utils')
   },
 }));
 
-const rp = jest.fn();
 const requestPromise = require('login.dfe.request-promise-retry');
-requestPromise.defaults.mockReturnValue(rp);
 
-const jwtStrategy = require('login.dfe.jwt-strategies');
 const { searchOrganisations } = require('./../../../src/infrastructure/org-management/api');
 
 const correlationId = 'abc123';
@@ -49,7 +43,7 @@ describe('when getting a page of organisations from api', () => {
   });
 
   it('then it should call organisations resource with page number', async () => {
-    await searchOrganisations('org',2, correlationId);
+    await searchOrganisations('org', 2, correlationId);
 
     expect(rp.mock.calls).toHaveLength(1);
     expect(rp.mock.calls[0][0]).toMatchObject({
@@ -59,7 +53,7 @@ describe('when getting a page of organisations from api', () => {
   });
 
   it('then it should use the token from jwt strategy as bearer token', async () => {
-    await searchOrganisations('org',2, correlationId);
+    await searchOrganisations('org', 2, correlationId);
 
     expect(rp.mock.calls[0][0]).toMatchObject({
       headers: {
@@ -69,7 +63,7 @@ describe('when getting a page of organisations from api', () => {
   });
 
   it('then it should include the correlation id', async () => {
-    await searchOrganisations('org',2, correlationId);
+    await searchOrganisations('org', 2, correlationId);
 
     expect(rp.mock.calls[0][0]).toMatchObject({
       headers: {
@@ -79,9 +73,10 @@ describe('when getting a page of organisations from api', () => {
   });
 
   it('then it should return page of orgs from api', async () => {
-    const actual = await searchOrganisations('org',2, correlationId);
+    const actual = await searchOrganisations('org', 2, correlationId);
 
     expect(actual).not.toBeNull();
+
     expect(actual.totalNumberOfPages).toBe(2);
     expect(actual.organisations).toHaveLength(1);
     expect(actual.organisations[0]).toMatchObject({
