@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const logger = require('./infrastructure/logger');
 const https = require('https');
+const http = require('http');
 const path = require('path');
 const config = require('./infrastructure/config');
 const helmet = require('helmet');
@@ -14,6 +15,9 @@ const session = require('cookie-session');
 const { getErrorHandler } = require('login.dfe.express-error-handling');
 
 const registerRoutes = require('./routes');
+
+https.globalAgent.maxSockets = http.globalAgent.maxSockets =
+  config.hostingEnvironment.agentKeepAlive.maxSockets || 50;
 
 
 const init = async () => {
@@ -60,7 +64,7 @@ const init = async () => {
   app.use(flash());
 
 
-  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(sanitization());
   app.set('view engine', 'ejs');
